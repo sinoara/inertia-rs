@@ -23,6 +23,6 @@ mod tests {
         let sub_system = System::new(2.4, vec![], String::from("sys"));
         let system = System::new(1.7, vec![sub_system], String::from("sys"));
 
-        assert_eq!(system.total_mass(), 4.1);
+        assert_eq!(system.total_mass(), 2.4+1.7);
     }
 }
