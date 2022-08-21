@@ -1,10 +1,10 @@
-extern crate nalgebra as na;
+use nalgebra::{Vector3, Matrix3};
 
 
 pub struct System {
     mass: f32,
-    position: [f32; 3],
-    moment_of_inertia: [[f32; 3];3],
+    position: Vector3<f32>,
+    moment_of_inertia: Matrix3<f32>,
     subsystems: Vec<System>,
     description: String,
 }
@@ -14,11 +14,11 @@ impl System {
         self.subsystems.iter().fold(self.mass, |total, s| total + s.total_mass())
     }
 
-    pub fn total_inertia(&self) -> [[f32; 3]; 3] {
+    pub fn total_inertia(&self) -> Matrix3<f32> {
         unimplemented!()
     }
 
-    pub fn new(mass: f32, position: [f32; 3], moment_of_inertia: [[f32; 3];3], subsystems: Vec<System>, description: String) -> System {
+    pub fn new(mass: f32, position: Vector3<f32>, moment_of_inertia: Matrix3<f32>, subsystems: Vec<System>, description: String) -> System {
         System{mass: mass,
                position: position,
                moment_of_inertia: moment_of_inertia,
