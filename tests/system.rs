@@ -53,19 +53,17 @@ mod tests {
         assert_eq!(system.total_inertia(), Matrix3::from_iterator([1.0+1.5, 0.0, 0.0, 0.0, 1.0+0.9, 0.0, 0.0, 0.0, 1.0+1.1]));
     }
 
-    /*
     #[test]
-    fn inertia_same_center_system() {
+    fn inertia_subsystem() {
         let sub_system = System::new(
-            1.2, [0.0;3],
-            [[1.0, 0.0, 0.0],[0.0, 1.0, 0.0], [0.0, 0.0, 1.0]],
+            2.0, Vector3::from_iterator([3.0, 0.0, 0.0]),
+            Matrix3::zeros(),
             vec![], String::from("sys"));
         let system = System::new(
-            1.5, [],
-            [[1.5, 0.0, 0.0],[0.0, 0.9, 0.0], [0.0, 0.0, 1.1]],
+            0.0, Vector3::from_iterator([0.0;3]),
+            Matrix3::zeros(),
             vec![sub_system], String::from("sys"));
 
-        assert_eq!(system.total_inertia(), [[1.0+1.5, 0.0, 0.0],[0.0, 1.0+0.9, 0.0], [0.0, 0.0, 1.0+1.1]]);
+        assert_eq!(system.total_inertia(), Matrix3::from_iterator([0.0, 0.0, 2.0*3.0*3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0*3.0*3.0]));
     }
-    */
 }
