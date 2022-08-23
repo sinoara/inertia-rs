@@ -16,9 +16,15 @@ impl System {
     }
 
     pub fn total_inertia(&self) -> Matrix3<f32> {
-        self.subsystems.iter()
-            .fold(self.moment_of_inertia,
-                  |total, s| total + s.total_inertia() + s.mass*(s.position.dot(&s.position) * Matrix3::identity() - s.position*s.position.transpose()))
+        self.subsystems
+            .iter()
+            .fold(self.moment_of_inertia, |total, s| {
+                total
+                    + s.total_inertia()
+                    + s.mass
+                        * (s.position.dot(&s.position) * Matrix3::identity()
+                            - s.position * s.position.transpose())
+            })
     }
 
     pub fn new(
