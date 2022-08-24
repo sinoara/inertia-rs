@@ -27,6 +27,13 @@ impl System {
             })
     }
 
+    pub fn center_of_mass(&self) -> Vector3<f32> {
+        self.subsystems
+            .iter()
+            .fold(Vector3::zeros(), |total, s| total + s.total_mass()*s.position)
+            /self.total_mass()
+    }
+
     pub fn new(
         mass: f32,
         position: Vector3<f32>,
