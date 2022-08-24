@@ -129,4 +129,78 @@ mod tests {
             ])
         );
     }
+
+    #[test]
+    fn center_of_mass_composed_system() {
+        let sub_system = System::new(
+            1.5,
+            Vector3::from_iterator([0.0, 1.0, 0.0]),
+            Matrix3::from_iterator([1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]),
+            vec![],
+            String::from("sys"),
+        );
+        let system = System::new(
+            1.5,
+            Vector3::from_iterator([0.0; 3]),
+            Matrix3::from_iterator([1.5, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.0, 1.1]),
+            vec![sub_system],
+            String::from("sys"),
+        );
+
+        assert_eq!(
+            system.center_of_mass(),
+            Vector3::from_iterator([
+                0.0,
+                (1.5*1.0)/(1.5+1.5),
+                0.0,
+            ])
+        );
+    }
+
+    #[test]
+    fn center_of_mass_same_center_system() {
+        let sub_system = System::new(
+            1.5,
+            Vector3::from_iterator([0.0; 3]),
+            Matrix3::from_iterator([1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]),
+            vec![],
+            String::from("sys"),
+        );
+        let system = System::new(
+            1.5,
+            Vector3::from_iterator([0.0; 3]),
+            Matrix3::from_iterator([1.5, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.0, 1.1]),
+            vec![sub_system],
+            String::from("sys"),
+        );
+
+        assert_eq!(
+            system.center_of_mass(),
+            Vector3::from_iterator([
+                0.0,
+                0.0,
+                0.0,
+            ])
+        );
+    }
+
+    #[test]
+    fn center_of_mass_simple_system() {
+        let system = System::new(
+            1.5,
+            Vector3::from_iterator([0.0; 3]),
+            Matrix3::from_iterator([1.5, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.0, 1.1]),
+            vec![],
+            String::from("sys"),
+        );
+
+        assert_eq!(
+            system.center_of_mass(),
+            Vector3::from_iterator([
+                0.0,
+                0.0,
+                0.0,
+            ])
+        );
+    }
 }
