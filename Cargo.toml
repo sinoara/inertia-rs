@@ -4,6 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "inertia_rs"
+crate-type = ["cdylib"]
 
 [dependencies]
 nalgebra = "0.31.1"
+pyo3 = { version = "0.16.5", features = ["extension-module"] }
