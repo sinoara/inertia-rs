@@ -1,5 +1,9 @@
+mod python_module;
 use nalgebra::{Matrix3, Vector3};
 
+use pyo3::pyclass;
+
+#[pyclass]
 pub struct System {
     mass: f32,
     position: Vector3<f32>,
