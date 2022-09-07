@@ -44,7 +44,7 @@ mod tests {
             1.7,
             Vector3::from_iterator([0.0; 3]),
             Matrix3::from_iterator([0.0; 9]),
-            vec![sub_system],
+            vec![Box::new(sub_system)],
             String::from("sys"),
         );
 
@@ -77,7 +77,7 @@ mod tests {
             1.5,
             Vector3::from_iterator([0.0; 3]),
             Matrix3::from_iterator([1.5, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.0, 1.1]),
-            vec![sub_system],
+            vec![Box::new(sub_system)],
             String::from("sys"),
         );
 
@@ -110,7 +110,7 @@ mod tests {
             0.0,
             Vector3::from_iterator([0.0; 3]),
             Matrix3::zeros(),
-            vec![sub_system],
+            vec![Box::new(sub_system)],
             String::from("sys"),
         );
 
@@ -143,7 +143,7 @@ mod tests {
             1.5,
             Vector3::from_iterator([0.0; 3]),
             Matrix3::from_iterator([1.5, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.0, 1.1]),
-            vec![sub_system],
+            vec![Box::new(sub_system)],
             String::from("sys"),
         );
 
@@ -170,7 +170,7 @@ mod tests {
             1.5,
             Vector3::from_iterator([0.0; 3]),
             Matrix3::from_iterator([1.5, 0.0, 0.0, 0.0, 0.9, 0.0, 0.0, 0.0, 1.1]),
-            vec![sub_system],
+            vec![Box::new(sub_system)],
             String::from("sys"),
         );
 
