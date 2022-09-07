@@ -8,14 +8,20 @@ pub struct System {
     description: String,
 }
 
-impl System {
-    pub fn total_mass(&self) -> f32 {
+pub trait Inertia {
+    fn total_mass(&self) -> f32;
+    fn total_inertia(&self) -> Matrix3<f32>;
+    fn center_of_mass(&self) -> Vector3<f32>;
+}
+
+impl Inertia for System {
+    fn total_mass(&self) -> f32 {
         self.subsystems
             .iter()
             .fold(self.mass, |total, s| total + s.total_mass())
     }
 
-    pub fn total_inertia(&self) -> Matrix3<f32> {
+    fn total_inertia(&self) -> Matrix3<f32> {
         self.subsystems
             .iter()
             .fold(self.moment_of_inertia, |total, s| {
@@ -27,13 +33,15 @@ impl System {
             })
     }
 
-    pub fn center_of_mass(&self) -> Vector3<f32> {
+    fn center_of_mass(&self) -> Vector3<f32> {
         self.subsystems
             .iter()
             .fold(Vector3::zeros(), |total, s| total + s.total_mass()*s.position)
             /self.total_mass()
     }
+}
 
+impl System {
     pub fn new(
         mass: f32,
         position: Vector3<f32>,
